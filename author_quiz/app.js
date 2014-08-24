@@ -5,14 +5,27 @@
 
   var Quiz = React.createClass({
     propTypes: {
-      books: React.PropTypes.array.isRequired
+      data: React.PropTypes.array.isRequired
     },
+    
+    getInitialState: function () {
+      return this.props.data.selectGame();
+    },
+    
     render: function () {
       return React.DOM.div(
         null,
-        this.props.books.map(function (book) {
-          return Book({title: book});
-        })
+          <div className="row">
+            <div className="col-md-4">
+              <img src={this.state.author.imageUrl} className="authorimage col-md-3" />
+            </div>
+            <div className="col-md-7">
+              {this.state.books.map(function (book) {
+                return <Book title={book} />;
+              })}
+            </div>
+            <div className="col-md-1"></div>
+          </div>
       );
     }
   });
@@ -23,14 +36,14 @@
     },
     render: function () {
       return React.DOM.div(
-        null,
+        {className: 'answer'},
         React.DOM.h4(null, this.props.title)
       );
     }
   });
 
   React.renderComponent(
-    Quiz({books: ['The Lord of the Rings']}),
+    Quiz({data: window.quizData}),
     document.getElementById('app')
   );
 }());
