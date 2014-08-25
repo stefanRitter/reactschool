@@ -12,3 +12,20 @@
   background: Pink;
   margin: 10px;
 }
+
+.fail, .pass, .neutral {
+  margin: 10px 0;
+  height: 270px;
+}
+
+.fail {
+  background: Red;
+}
+
+.pass {
+  background: Green;
+}
+
+.neutral {
+  background: White;
+}

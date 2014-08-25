@@ -10,12 +10,18 @@
     },
     
     getInitialState: function () {
-      return this.props.data.selectGame();
+      var state = this.props.data.selectGame();
+      state.showContinue = false;
+      state.bgClass = 'neutral';
+      return state;
     },
 
     handleBookSelected: function (title) {
       var isCorrect = this.state.checkAnswer(title);
-      alert(isCorrect);
+      this.setState({
+        bgClass: isCorrect ? 'pass' : 'fail',
+        showContinue: isCorrect
+      });
     },
     
     render: function () {
@@ -30,7 +36,7 @@
                 return <Book onBookSelected={this.handleBookSelected} title={book} />;
               }.bind(this))}
             </div>
-            <div className="col-md-1"></div>
+            <div className={'col-md-1 ' + this.state.bgClass}></div>
           </div>
       );
     }
