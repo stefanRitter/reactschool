@@ -23,6 +23,10 @@
         showContinue: isCorrect
       });
     },
+
+    handleContinue: function () {
+      this.setState(this.getInitialState());
+    },
     
     render: function () {
       return React.DOM.div(
@@ -37,6 +41,13 @@
               }.bind(this))}
             </div>
             <div className={'col-md-1 ' + this.state.bgClass}></div>
+          </div>,
+          <div className="row">
+            {this.state.showContinue ? (
+              <div className="col-md-12">
+                <input onClick={this.handleContinue} type="button" className="btn btn-info pull-right" value="Continue" />
+              </div>
+            ) : <span />}
           </div>
       );
     }
