@@ -73,11 +73,12 @@
         
         return {
           books: books,
-          author: author
+          author: author,
+          checkAnswer: function (title) {
+            return this.author.books.indexOf(title) > -1;
+          }
         }
       };
-
-      quizData.selectGame();
     </script>
 
     <script src="http://fb.me/react-0.11.1.js"></script>

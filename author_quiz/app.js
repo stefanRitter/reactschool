@@ -3,6 +3,7 @@
 (function () {
   'use strict';
 
+
   var Quiz = React.createClass({
     propTypes: {
       data: React.PropTypes.array.isRequired
@@ -10,6 +11,11 @@
     
     getInitialState: function () {
       return this.props.data.selectGame();
+    },
+
+    handleBookSelected: function (title) {
+      var isCorrect = this.state.checkAnswer(title);
+      alert(isCorrect);
     },
     
     render: function () {
@@ -21,8 +27,8 @@
             </div>
             <div className="col-md-7">
               {this.state.books.map(function (book) {
-                return <Book title={book} />;
-              })}
+                return <Book onBookSelected={this.handleBookSelected} title={book} />;
+              }.bind(this))}
             </div>
             <div className="col-md-1"></div>
           </div>
@@ -30,13 +36,23 @@
     }
   });
 
+
   var Book = React.createClass({
     propTypes: {
-      title: React.PropTypes.string.isRequired
+      title: React.PropTypes.string.isRequired,
+      onBookSelected: React.PropTypes.func.isRequired
     },
+
+    handleClick: function () {
+      this.props.onBookSelected(this.props.title);
+    },
+    
     render: function () {
       return React.DOM.div(
-        {className: 'answer'},
+        {
+          className: 'answer',
+          onClick: this.handleClick
+        },
         React.DOM.h4(null, this.props.title)
       );
     }
