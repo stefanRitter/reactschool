@@ -43,7 +43,13 @@
 
   var RefTest = React.createClass({
     render: function () {
-
+      return <div>
+                <input type="text" ref="first" />
+                <br />
+                <input type="text" ref="second" />
+                <br />
+                <input type="button" value="add" onClick={this.handleAdd} />
+              </div>;
     },
 
     handleAdd: function () {
