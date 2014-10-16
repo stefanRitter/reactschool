@@ -30,8 +30,33 @@
   });
 
 
+  var Refs = React.createClass({
+    render: function () {
+      return <input type="text" ref="inp" />;
+    },
+
+    componentDidMount: function () {
+      this.refs.inp.getDOMNode().value = 'set by ref';
+    }
+  });
+
+
+  var RefTest = React.createClass({
+    render: function () {
+
+    },
+
+    handleAdd: function () {
+      alert(
+        parseFloat(this.refs.first.getDOMNode().value) +
+        parseFloat(this.refs.second.getDOMNode().value)
+      )
+    }
+  });
+
+
   React.renderComponent(
-    ControlledComponent(),
+    <RefTest />,
     document.getElementById('app')
   );
 }());
