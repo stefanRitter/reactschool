@@ -70,7 +70,7 @@ var CartStore = assign({}, EventEmitter.prototype, {
 
 
 // Register callback with AppDispatcher
-AppDispatcher.register(function(payload) {
+AppDispatcher.register(function (payload) {
   var action = payload.action;
 
   switch(action.actionType) {
